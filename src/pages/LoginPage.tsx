@@ -70,12 +70,6 @@ const LoginPage = () => {
     }
   };
 
-  const fillDemo = () => {
-    setEmail(DEMO_ID);
-    setPassword(DEMO_PASS);
-    setError('');
-  };
-
   return (
     <div
       className="min-h-screen flex flex-col relative overflow-hidden bg-bg-primary"
