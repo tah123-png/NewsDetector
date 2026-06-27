@@ -26,38 +26,54 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const DEMO_ID = 'demo1';
+  const DEMO_PASS = 'demo123';
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
+    // ── Demo shortcut ──
+    if (email.trim() === DEMO_ID && password === DEMO_PASS) {
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('token', 'demo-token');
+      localStorage.setItem('user', JSON.stringify({ name: 'Demo User', email: 'demo1@fakeshield.ai' }));
+      navigate('/dashboard');
+      return;
+    }
+
     try {
       const res = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',           // send/receive httpOnly cookie
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        // Show field-level errors or a general message
         const msg = data.errors?.[0]?.msg ?? data.message ?? 'Login failed.';
         setError(msg);
         setLoading(false);
         return;
       }
 
-      // Persist token + basic user info
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/dashboard');
     } catch {
-      setError('Cannot reach the server. Make sure the backend is running.');
+      setError('Cannot reach the server. Try the demo account below.');
       setLoading(false);
     }
+  };
+
+  const fillDemo = () => {
+    setEmail(DEMO_ID);
+    setPassword(DEMO_PASS);
+    setError('');
   };
 
   return (

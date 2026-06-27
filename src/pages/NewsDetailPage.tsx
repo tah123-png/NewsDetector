@@ -31,6 +31,76 @@ function formatDate(dateStr: string) {
   });
 }
 
+/* ── Demo article detail content ── */
+const DEMO_ARTICLES: Record<string, NewsArticle> = {
+  'demo-1': {
+    _id: 'demo-1', featured: true,
+    title: 'AI-Powered Fact-Checking Tools Are Changing How We Consume News',
+    summary: 'New generation of machine learning models can now detect misinformation with over 94% accuracy, revolutionizing digital media verification worldwide.',
+    content: `Artificial intelligence is rapidly transforming the landscape of news verification. A new wave of machine learning models, trained on billions of articles and social media posts, can now flag misleading content with unprecedented accuracy.\n\nResearchers at leading universities have developed multi-modal AI systems capable of analyzing text, images, video, and audio simultaneously. These tools cross-reference claims against thousands of trusted databases in milliseconds, offering fact-checkers a powerful new weapon against the spread of disinformation.\n\n"This is a game changer," said Dr. Elena Vasquez, lead researcher at the Digital Media Lab. "For the first time, we have tools that can keep up with the speed of misinformation spread on social media."\n\nSeveral major news organizations have already integrated these tools into their workflows. Reuters, the Associated Press, and AFP are piloting AI-assisted verification systems that alert journalists to potentially false claims before publication.\n\nHowever, experts caution that AI alone cannot solve the misinformation crisis. Human judgment remains essential, particularly for nuanced political claims where context is everything. The most effective approaches combine AI speed with human expertise.\n\nThe technology is also being adapted for consumer use. Browser extensions powered by these models can now display credibility scores next to links in social media feeds, giving everyday users real-time guidance on the reliability of content they encounter.`,
+    category: 'Technology',
+    imageUrl: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop',
+    author: 'Sarah Mitchell', source: 'TechInsider',
+    tags: ['AI', 'Fact-checking', 'Machine Learning'],
+    publishedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
+  },
+  'demo-2': {
+    _id: 'demo-2', featured: true,
+    title: 'Social Media Platforms Double Down on Misinformation Policies Ahead of Elections',
+    summary: 'Major platforms including Meta, Twitter/X, and TikTok announce sweeping new content moderation policies targeting political deepfakes and coordinated inauthentic behavior.',
+    content: `With major elections approaching across Europe, Asia, and the Americas, social media giants are facing intense pressure to tighten their content moderation policies. This week, Meta, X (formerly Twitter), and TikTok announced a coordinated set of new measures targeting political misinformation.\n\nMeta unveiled a new "Election Information Centre" that will be activated in countries holding national votes in the coming months. The center will surface authoritative information from electoral commissions directly in users' feeds and apply additional labels to AI-generated political content.\n\nX, under the leadership of Elon Musk, announced an expanded Community Notes program that will allow more users globally to add fact-checking context to misleading tweets. Critics have questioned whether the crowdsourced approach is sufficient to counter sophisticated influence operations.\n\nTikTok, which has faced particular scrutiny over its Chinese ownership, pledged to remove content that seeks to suppress voter participation or spread false information about electoral processes. The platform will also limit political advertising in the weeks before elections.\n\nCivil society organizations welcomed the announcements but called for greater transparency. "We need to see real data on how many pieces of misinformation are being removed, not just policy documents," said Maria Chen of the Digital Rights Foundation.\n\nThe stakes are high. Research shows that election-related misinformation is among the most damaging forms of false content, capable of suppressing turnout, inflaming political tensions, and undermining trust in democratic institutions.`,
+    category: 'Media',
+    imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop',
+    author: 'James Okonkwo', source: 'MediaWatch',
+    tags: ['Social Media', 'Elections', 'Policy'],
+    publishedAt: new Date(Date.now() - 5 * 3600000).toISOString(),
+  },
+  'demo-3': {
+    _id: 'demo-3', featured: false,
+    title: 'WHO Warns of Dangerous Health Misinformation Surge on Short-Video Apps',
+    summary: 'The World Health Organization releases new report showing a 340% increase in health-related false claims on platforms like TikTok and Instagram Reels since 2023.',
+    content: `The World Health Organization has issued a stark warning about the explosive growth of health misinformation on short-form video platforms. A new report from the agency documents a 340% increase in false or misleading health claims on TikTok and Instagram Reels between 2023 and 2025.\n\nThe most common false claims involve miracle cures, vaccine misinformation, and dangerous dietary advice. Researchers found that videos promoting unproven cancer treatments garnered over 2 billion views in the past year alone.\n\n"The algorithm-driven nature of these platforms means that sensational health claims spread far faster than accurate medical information," said Dr. Tedros Adhanom Ghebreyesus, WHO Director-General. "This is not just a digital problem — it has real consequences for public health."\n\nThe report highlights a troubling trend of medical professionals and influencers spreading conflicting information, making it difficult for the public to identify reliable sources. AI-generated health content has also proliferated, with synthetic voices and faces lending false credibility to dangerous claims.\n\nThe WHO is calling on platforms to partner with health authorities to develop dedicated fact-checking systems for medical content and to algorithmically downrank content that contradicts established medical consensus.`,
+    category: 'Health',
+    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop',
+    author: 'Dr. Amara Diallo', source: 'WHO Report',
+    tags: ['Health', 'WHO', 'Misinformation'],
+    publishedAt: new Date(Date.now() - 8 * 3600000).toISOString(),
+  },
+  'demo-4': {
+    _id: 'demo-4', featured: false,
+    title: 'Deepfake Detection Research Reaches New Milestone with 99% Precision',
+    summary: 'A team of researchers at MIT and Stanford have developed a neural network capable of identifying AI-generated video content with near-perfect precision even in compressed formats.',
+    content: `Scientists at the Massachusetts Institute of Technology and Stanford University have announced a breakthrough in deepfake detection technology. Their new neural network, dubbed "TruthNet," can identify AI-generated video content with 99.1% precision — even after the video has been compressed and re-uploaded multiple times.\n\nPrevious detection systems struggled with compressed videos because the compression process destroys many of the subtle artifacts that betray AI-generated content. TruthNet overcomes this limitation by focusing on micro-inconsistencies in lighting, skin texture, and eye movement that survive the compression process.\n\n"The key insight was to look at biological signals that are incredibly difficult to fake," explained Prof. David Kim, the project's lead researcher. "Human blinking patterns, skin micro-pulsations driven by blood flow — these are near impossible for current AI models to replicate convincingly."\n\nThe technology has been licensed to several social media platforms and is being integrated into content moderation pipelines. An open-source version of the model will be made available to researchers and journalists through the newly established Deepfake Detection Initiative.\n\nExperts caution that the arms race between detection and generation technologies will continue, and that no technical solution alone can address the social harms caused by deepfakes. Policy interventions and digital literacy education remain essential complements.`,
+    category: 'Science',
+    imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop',
+    author: 'Prof. Lena Hoffman', source: 'ScienceDaily',
+    tags: ['Deepfake', 'Research', 'Neural Network'],
+    publishedAt: new Date(Date.now() - 12 * 3600000).toISOString(),
+  },
+  'demo-5': {
+    _id: 'demo-5', featured: false,
+    title: 'Government to Introduce Digital Literacy Curriculum in All Public Schools',
+    summary: 'The Ministry of Education announces a national initiative to teach students how to spot fake news, verify sources, and understand algorithmic content bias starting next academic year.',
+    content: `The Ministry of Education has unveiled a landmark initiative to embed digital literacy across the national school curriculum. Starting from the next academic year, students from Grade 6 through Grade 12 will receive structured instruction in critical thinking, source verification, and understanding how social media algorithms shape the information they see.\n\nThe curriculum, developed in collaboration with leading universities and civil society organizations, covers a range of topics including how to identify clickbait and sensationalism, how to perform reverse image searches, how to distinguish between opinion and fact, and how to recognize common logical fallacies used in propaganda.\n\n"We are preparing students for a world where misinformation is everywhere," said the Minister of Education at the announcement ceremony. "Digital literacy is now as fundamental as reading and writing."\n\nThe program will train 45,000 teachers over the next 18 months. Free digital resources, including interactive exercises and a classroom fact-checking toolkit, will be made available to all public schools.\n\nPilot programs run in 200 schools over the past two years showed promising results. Students who completed the program were significantly better at identifying false news articles and reported higher confidence in evaluating online content.`,
+    category: 'Politics',
+    imageUrl: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&auto=format&fit=crop',
+    author: 'Rajesh Kumar', source: 'The Daily Post',
+    tags: ['Education', 'Policy', 'Digital Literacy'],
+    publishedAt: new Date(Date.now() - 18 * 3600000).toISOString(),
+  },
+  'demo-6': {
+    _id: 'demo-6', featured: false,
+    title: 'New Browser Extension Flags Unverified News in Real Time',
+    summary: 'A viral browser extension now used by over 3 million users highlights potentially misleading articles and attaches credibility scores directly in your feed.',
+    content: `A browser extension designed to flag unverified news claims in real time has gone viral, amassing over 3 million users in just four months since its public launch. The extension, called "VerifyNow," overlays credibility scores on links and articles as users browse social media and news sites.\n\nThe tool uses a combination of natural language processing, source reputation databases, and cross-referencing with major fact-checking organizations to assess the reliability of online content. A color-coded badge appears next to every link — green for verified, yellow for uncertain, and red for content flagged by multiple fact-checkers.\n\n"We wanted to meet people where they already are — in their feeds, not on a separate fact-checking website they'll never visit," said the extension's creator. "The friction of leaving a platform is too high. We needed to bring the information to users instantly."\n\nThe rapid adoption has drawn both praise and criticism. Supporters call it a vital tool for fighting misinformation at scale. Critics worry about the potential for false positives, algorithmic bias, and the concentration of truth-determination power in a single tool.\n\nThe development team has pledged to make the extension's credibility scoring methodology open-source, and has established an independent advisory board including journalists, academics, and civil liberties advocates.`,
+    category: 'Technology',
+    imageUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop',
+    author: 'Chen Wei', source: 'ProductHunt',
+    tags: ['Browser', 'Extension', 'Tools'],
+    publishedAt: new Date(Date.now() - 24 * 3600000).toISOString(),
+  },
+};
+
 const NewsDetailPage = () => {
   const { id }      = useParams<{ id: string }>();
   const navigate    = useNavigate();
@@ -43,12 +113,23 @@ const NewsDetailPage = () => {
       try {
         setLoading(true);
         setError('');
+        // Check demo articles first
+        if (id && DEMO_ARTICLES[id]) {
+          setArticle(DEMO_ARTICLES[id]);
+          setLoading(false);
+          return;
+        }
         const res  = await fetch(`http://localhost:5000/api/news/${id}`);
         const data = await res.json();
         if (!data.success) throw new Error(data.message);
         setArticle(data.data);
       } catch {
-        setError('Article not found or failed to load.');
+        // If backend unavailable and it's a demo ID, use demo data
+        if (id && DEMO_ARTICLES[id]) {
+          setArticle(DEMO_ARTICLES[id]);
+        } else {
+          setError('Article not found or failed to load.');
+        }
       } finally {
         setLoading(false);
       }

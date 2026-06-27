@@ -16,15 +16,6 @@ interface NewsArticle {
   featured: boolean;
 }
 
-interface FactCheckArticle {
-  id: string;
-  title: string;
-  link: string;
-  imageUrl: string;
-  category: string;
-  source: string;
-}
-
 interface LiveFeedArticle {
   id: string;
   title: string;
@@ -36,8 +27,8 @@ interface LiveFeedArticle {
 
 /* ─── Constants ─── */
 const NEWS_CATEGORIES = ['All', 'Technology', 'Health', 'Politics', 'Science', 'Media'];
-const FACT_CATEGORIES = ['All', 'National', 'Politics', 'Education', 'Science & Tech', 'Health'];
 const LIVEFEED_SOURCES = ['All', 'Jamuna TV', 'Somoy News'];
+
 
 const categoryColors: Record<string, string> = {
   Technology: 'var(--color-accent)',
@@ -66,6 +57,175 @@ function timeAgo(dateStr: string) {
   if (hours > 0) return `${hours}h ago`;
   return `${mins}m ago`;
 }
+
+/* ─── Demo Data ─── */
+const DEMO_NEWS: NewsArticle[] = [
+  {
+    _id: 'demo-1',
+    title: 'AI-Powered Fact-Checking Tools Are Changing How We Consume News',
+    summary: 'New generation of machine learning models can now detect misinformation with over 94% accuracy, revolutionizing digital media verification worldwide.',
+    category: 'Technology',
+    imageUrl: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&auto=format&fit=crop',
+    author: 'Sarah Mitchell',
+    source: 'TechInsider',
+    tags: ['AI', 'Fact-checking', 'Machine Learning'],
+    publishedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
+    featured: true,
+  },
+  {
+    _id: 'demo-2',
+    title: 'Social Media Platforms Double Down on Misinformation Policies Ahead of Elections',
+    summary: 'Major platforms including Meta, Twitter/X, and TikTok announce sweeping new content moderation policies targeting political deepfakes and coordinated inauthentic behavior.',
+    category: 'Media',
+    imageUrl: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop',
+    author: 'James Okonkwo',
+    source: 'MediaWatch',
+    tags: ['Social Media', 'Elections', 'Policy'],
+    publishedAt: new Date(Date.now() - 5 * 3600000).toISOString(),
+    featured: true,
+  },
+  {
+    _id: 'demo-3',
+    title: 'WHO Warns of Dangerous Health Misinformation Surge on Short-Video Apps',
+    summary: 'The World Health Organization releases new report showing a 340% increase in health-related false claims on platforms like TikTok and Instagram Reels since 2023.',
+    category: 'Health',
+    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop',
+    author: 'Dr. Amara Diallo',
+    source: 'WHO Report',
+    tags: ['Health', 'WHO', 'Misinformation'],
+    publishedAt: new Date(Date.now() - 8 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-4',
+    title: 'Deepfake Detection Research Reaches New Milestone with 99% Precision',
+    summary: 'A team of researchers at MIT and Stanford have developed a neural network capable of identifying AI-generated video content with near-perfect precision even in compressed formats.',
+    category: 'Science',
+    imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop',
+    author: 'Prof. Lena Hoffman',
+    source: 'ScienceDaily',
+    tags: ['Deepfake', 'Research', 'Neural Network'],
+    publishedAt: new Date(Date.now() - 12 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-5',
+    title: 'Government to Introduce Digital Literacy Curriculum in All Public Schools',
+    summary: 'The Ministry of Education announces a national initiative to teach students how to spot fake news, verify sources, and understand algorithmic content bias starting next academic year.',
+    category: 'Politics',
+    imageUrl: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&auto=format&fit=crop',
+    author: 'Rajesh Kumar',
+    source: 'The Daily Post',
+    tags: ['Education', 'Policy', 'Digital Literacy'],
+    publishedAt: new Date(Date.now() - 18 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-6',
+    title: 'New Browser Extension Flags Unverified News in Real Time',
+    summary: 'A viral browser extension now used by over 3 million users highlights potentially misleading articles and attaches credibility scores directly in your feed.',
+    category: 'Technology',
+    imageUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop',
+    author: 'Chen Wei',
+    source: 'ProductHunt',
+    tags: ['Browser', 'Extension', 'Tools'],
+    publishedAt: new Date(Date.now() - 24 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-7',
+    title: 'Climate Change Disinformation Campaigns Linked to Fossil Fuel Lobbyists',
+    summary: 'An investigative report exposes a coordinated network of websites and social accounts that have systematically spread misleading climate data, with ties to fossil fuel industry donors.',
+    category: 'Science',
+    imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop',
+    author: 'Fatima Al-Rashid',
+    source: 'The Guardian',
+    tags: ['Climate', 'Disinformation', 'Investigation'],
+    publishedAt: new Date(Date.now() - 36 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-8',
+    title: 'Journalists Report Surge in AI-Generated Press Releases from Unknown Sources',
+    summary: 'Newsrooms around the world are reporting that an increasing number of press releases are being auto-generated by AI and sent under the names of non-existent organizations.',
+    category: 'Media',
+    imageUrl: 'https://images.unsplash.com/photo-1493612276216-ee3925520721?w=800&auto=format&fit=crop',
+    author: 'Michael Tan',
+    source: 'Columbia Journalism',
+    tags: ['AI', 'Journalism', 'Press'],
+    publishedAt: new Date(Date.now() - 48 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-9',
+    title: 'Study: People Who Verify News Before Sharing Are 6x Less Likely to Spread Falsehoods',
+    summary: 'A landmark behavioral study involving 120,000 participants across 15 countries shows that simple habits like pausing to check a source dramatically reduce misinformation sharing.',
+    category: 'Health',
+    imageUrl: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&auto=format&fit=crop',
+    author: 'Dr. Priya Nair',
+    source: 'Nature Human Behaviour',
+    tags: ['Psychology', 'Study', 'Behaviour'],
+    publishedAt: new Date(Date.now() - 60 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-10',
+    title: 'Bangladesh Media Regulators Propose New Guidelines for Online News Portals',
+    summary: 'The Bangladesh Telecommunication Regulatory Commission releases draft guidelines requiring online news portals to register, disclose ownership, and implement content moderation systems.',
+    category: 'Politics',
+    imageUrl: 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&auto=format&fit=crop',
+    author: 'Sumaiya Islam',
+    source: 'BD News Desk',
+    tags: ['Bangladesh', 'Media', 'Regulation'],
+    publishedAt: new Date(Date.now() - 72 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-11',
+    title: 'Viral Image of Flooded City Was Actually From 3 Years Ago — Fact Check',
+    summary: 'An image circulating on social media claiming to show recent flooding in a major city has been verified by reverse image search to originate from a 2021 monsoon event.',
+    category: 'Media',
+    imageUrl: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&auto=format&fit=crop',
+    author: 'Ananya Roy',
+    source: 'FactCheck BD',
+    tags: ['Image Verification', 'Flood', 'Fact Check'],
+    publishedAt: new Date(Date.now() - 90 * 3600000).toISOString(),
+    featured: false,
+  },
+  {
+    _id: 'demo-12',
+    title: 'How Language Models Are Being Used to Generate Fake News at Scale',
+    summary: 'Researchers demonstrate how large language models can be fine-tuned to produce highly convincing fake news articles, and the countermeasures being developed to detect them.',
+    category: 'Technology',
+    imageUrl: 'https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&auto=format&fit=crop',
+    author: 'Alex Turner',
+    source: 'Wired',
+    tags: ['LLM', 'Fake News', 'AI Generation'],
+    publishedAt: new Date(Date.now() - 5 * 86400000).toISOString(),
+    featured: false,
+  },
+];
+
+const DEMO_LIVE_FEEDS: LiveFeedArticle[] = [
+  // Jamuna TV
+  { id: 'jt-1', title: 'দেশে করোনার নতুন ভ্যারিয়েন্ট শনাক্ত, স্বাস্থ্য মন্ত্রণালয়ের সতর্কতা জারি', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'Health' },
+  { id: 'jt-2', title: 'ঢাকায় বড় সড়ক দুর্ঘটনায় ৫ জন নিহত, আহত অনেকে', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'National' },
+  { id: 'jt-3', title: 'জাতীয় নির্বাচনের তারিখ ঘোষণা করলেন নির্বাচন কমিশন', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'National' },
+  { id: 'jt-4', title: 'বাংলাদেশ ক্রিকেট দলের নতুন কোচ নিয়োগ দিলো বিসিবি', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'Sports' },
+  { id: 'jt-5', title: 'শেয়ার বাজারে বড় ধস, বিনিয়োগকারীদের উদ্বেগ বাড়ছে', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'National' },
+  { id: 'jt-6', title: 'দেশের সেরা বিশ্ববিদ্যালয়গুলোতে ভর্তি পরীক্ষার সময়সূচি প্রকাশ', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'Health' },
+  { id: 'jt-7', title: 'চট্টগ্রাম বন্দরে নতুন কন্টেইনার টার্মিনাল উদ্বোধন', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'National' },
+  { id: 'jt-8', title: 'জলবায়ু পরিবর্তন মোকাবেলায় বাংলাদেশের নতুন পরিকল্পনা', link: 'https://www.jamuna.tv', imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop', source: 'Jamuna TV', category: 'National' },
+  // Somoy News
+  { id: 'sn-1', title: 'সারাদেশে ভারী বৃষ্টিপাতের পূর্বাভাস, নিম্নাঞ্চল প্লাবিত হওয়ার আশঙ্কা', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'National' },
+  { id: 'sn-2', title: 'আইসিসি র‍্যাংকিংয়ে শীর্ষে বাংলাদেশের সাকিব আল হাসান', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'Sports' },
+  { id: 'sn-3', title: 'প্রধানমন্ত্রীর কার্যালয়ে নতুন ডিজিটাল সেবা চালু', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'National' },
+  { id: 'sn-4', title: 'ডেঙ্গু মহামারী নিয়ন্ত্রণে সিটি কর্পোরেশনের বিশেষ অভিযান', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'Health' },
+  { id: 'sn-5', title: 'পদ্মা সেতুতে যানবাহন চলাচলে রেকর্ড সংখ্যক টোল আদায়', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'National' },
+  { id: 'sn-6', title: 'বাংলাদেশ জাতীয় ফুটবল দল ফিফা র‍্যাংকিংয়ে উন্নতি করেছে', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1551854838-212c50b4c184?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'Sports' },
+  { id: 'sn-7', title: 'রোহিঙ্গা সংকট সমাধানে জাতিসংঘের নতুন প্রস্তাব', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'National' },
+  { id: 'sn-8', title: 'নতুন ওষুধ আবিষ্কারে বাংলাদেশি বিজ্ঞানীদের সাফল্য', link: 'https://www.somoynews.tv', imageUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&auto=format&fit=crop', source: 'Somoy News', category: 'Health' },
+];
 
 /* ─── Main Component ─── */
 const NewsPage = () => {
@@ -110,9 +270,12 @@ const NewsPage = () => {
       const res = await fetch(`http://localhost:5000/api/news?${params}`);
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
-      setArticles(dedupeArticles(Array.isArray(data.data) ? data.data : []));
+      const fetched = dedupeArticles(Array.isArray(data.data) ? data.data : []);
+      setArticles(fetched.length > 0 ? fetched : DEMO_NEWS);
     } catch {
-      setError('Failed to load news. Please try again.');
+      // Backend unavailable — use demo data
+      const filtered = cat === 'All' ? DEMO_NEWS : DEMO_NEWS.filter(a => a.category === cat);
+      setArticles(filtered);
     } finally {
       setLoading(false);
     }
@@ -126,9 +289,12 @@ const NewsPage = () => {
       const res = await fetch(`http://localhost:5000/api/livefeeds?${params}`);
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
-      setFeedArticles(Array.isArray(data.data) ? data.data : []);
+      const fetched = Array.isArray(data.data) ? data.data : [];
+      setFeedArticles(fetched.length > 0 ? fetched : DEMO_LIVE_FEEDS);
     } catch {
-      setFeedError('Failed to load live feeds. Please try again.');
+      // Backend unavailable — use demo data
+      const filtered = src === 'All' ? DEMO_LIVE_FEEDS : DEMO_LIVE_FEEDS.filter(a => a.source === src);
+      setFeedArticles(filtered);
     } finally {
       setFeedLoading(false);
     }
