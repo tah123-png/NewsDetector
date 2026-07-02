@@ -26,8 +26,8 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const DEMO_ID = 'demo1';
-  const DEMO_PASS = 'demo123';
+  const DEMO_ID = 'tahmid';
+  const DEMO_PASS = '12345678';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
