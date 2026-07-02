@@ -344,7 +344,7 @@ const NewsPage = () => {
 
       {/* ── Hero ── */}
       <div
-        className="relative overflow-hidden py-20 px-6 text-center"
+        className="relative overflow-hidden py-12 sm:py-20 px-6 text-center"
         style={{ background: 'linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%)' }}
       >
         <div aria-hidden style={{ position: 'absolute', top: '-30%', left: '-10%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -398,7 +398,7 @@ const NewsPage = () => {
       {/* ── Category / Source tabs ── */}
       <div className="sticky top-0 z-40 border-b border-border-base" style={{ background: 'var(--color-bg-secondary)' }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex items-center gap-1 overflow-x-auto py-3 scrollbar-none" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
             {cats.map(cat => (
               <button
                 key={cat}

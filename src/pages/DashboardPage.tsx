@@ -32,15 +32,16 @@ const resultColor = (r: string) =>
 const StatCard = ({
   label, value, sub, accent, icon,
 }: { label: string; value: string; sub: string; accent: string; icon: string }) => (
-  <div className="glass-card p-6 flex flex-col gap-3" style={{ borderLeft: `4px solid ${accent}` }}>
+  <div className="glass-card p-4 sm:p-6 flex flex-col gap-3" style={{ borderLeft: `4px solid ${accent}` }}>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-text-muted)', fontFamily: "'Inter', sans-serif" }}>{label}</span>
       <span style={{ fontSize: 20 }}>{icon}</span>
     </div>
-    <div style={{ fontSize: 36, fontWeight: 900, color: 'var(--color-text-primary)', lineHeight: 1, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>{value}</div>
+    <div className="stat-card-value" style={{ fontSize: 36, fontWeight: 900, color: 'var(--color-text-primary)', lineHeight: 1, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.02em' }}>{value}</div>
     <div style={{ fontSize: 12, color: 'var(--color-text-secondary)', fontWeight: 500 }}>{sub}</div>
   </div>
 );
+
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -188,43 +189,45 @@ const DashboardPage = () => {
 
       {/* Top Navbar */}
       <header ref={navbarRef} style={{ position: 'sticky', top: 0, zIndex: 50, background: isDark ? 'rgba(10,15,28,0.85)' : 'rgba(248,250,252,0.85)', backdropFilter: 'blur(16px)', borderBottom: `1px solid var(--color-border)` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* Logo / back */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <img src="/Dashboard.png" alt="Dashboard Logo" className="dashboard-logo" style={{ width: 50, height: 50, objectFit: 'contain' }} />
-            <span style={{ fontWeight: 800, fontSize: 18, color: 'var(--color-text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>FakeShield</span>
+            <img src="/Dashboard.png" alt="Dashboard Logo" className="dashboard-logo" style={{ width: 40, height: 40, objectFit: 'contain' }} />
+            <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--color-text-primary)', fontFamily: "'Space Grotesk', sans-serif" }}>FakeShield</span>
           </Link>
 
 
           {/* Right side */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <ThemeToggle />
             {/* User avatar */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800, color: '#fff', textTransform: 'uppercase' }}>{userName.charAt(0) || 'U'}</div>
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{userName}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800, color: '#fff', textTransform: 'uppercase', flexShrink: 0 }}>{userName.charAt(0) || 'U'}</div>
+              <span className="nav-username" style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{userName}</span>
             </div>
             <button
               onClick={() => { localStorage.removeItem('isAuthenticated'); navigate('/'); }}
-              style={{ padding: '6px 14px', borderRadius: 8, background: 'rgba(239,68,68,0.1)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.25)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}
+              style={{ padding: '6px 10px', borderRadius: 8, background: 'rgba(239,68,68,0.1)', color: '#ef4444', border: '1px solid rgba(239,68,68,0.25)', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}
             >
-              Sign Out
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
+              <span className="nav-signout-text">Sign Out</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Page content */}
-      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '36px 24px 60px', position: 'relative', zIndex: 1 }}>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 16px 60px', position: 'relative', zIndex: 1 }}>
 
         {/* ── Hero Welcome + CTA ── */}
         <div
           ref={welcomeRef}
+          className="dashboard-welcome"
           style={{
             position: 'relative',
             overflow: 'hidden',
-            marginBottom: 28,
-            borderRadius: 24,
+            marginBottom: 24,
+            borderRadius: 20,
             padding: '32px 36px',
             background: isDark
               ? 'linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(17,24,39,0.95) 100%)'
@@ -237,7 +240,7 @@ const DashboardPage = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: 24,
+            gap: 20,
           }}
         >
           {/* Decorative gradient orbs */}
@@ -271,7 +274,7 @@ const DashboardPage = () => {
           </div>
 
           {/* Right: CTA buttons */}
-          <div ref={bannerRef} style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end', position: 'relative', zIndex: 1 }}>
+          <div ref={bannerRef} className="dashboard-cta" style={{ display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', position: 'relative', zIndex: 1, flexWrap: 'wrap' }}>
             <Link
               to="/"
               style={{ padding: '11px 24px', borderRadius: 12, background: 'linear-gradient(135deg, #3b82f6, #2563eb)', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Inter', sans-serif", boxShadow: '0 4px 18px rgba(59,130,246,0.35)', letterSpacing: '0.01em' }}
@@ -288,7 +291,7 @@ const DashboardPage = () => {
         </div>
 
         {/* KPI Cards */}
-        <div ref={kpiRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18, marginBottom: 28 }}>
+        <div ref={kpiRef} className="kpi-grid" style={{ marginBottom: 24 }}>
           <StatCard label="Total Checked" value={String(myActivity.length)} sub="Articles & images" accent="#3b82f6" icon="🔍" />
           <StatCard label="Fake Found" value={String(fakeCount + uncertainCount)} sub="Misinformation caught" accent="#ef4444" icon="🚨" />
           <StatCard label="Real Content" value={String(realCount)} sub="Verified as credible" accent="#10b981" icon="✅" />
@@ -296,7 +299,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Charts row */}
-        <div ref={chartsRef} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20, marginBottom: 20 }}>
+        <div ref={chartsRef} className="charts-grid" style={{ marginBottom: 16 }}>
           <div className="glass-card p-6">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
               <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '-0.01em' }}>My Activity This Year</h2>
@@ -312,7 +315,7 @@ const DashboardPage = () => {
         </div>
 
         {/* Weekly bar chart */}
-        <div ref={barRowRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+        <div ref={barRowRef} className="bar-grid" style={{ marginBottom: 16 }}>
           <div className="glass-card p-6">
             <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 4px' }}>Checks This Week</h2>
             <span style={{ fontSize: 11, color: 'var(--color-text-muted)', fontWeight: 600 }}>Daily breakdown</span>
@@ -344,7 +347,7 @@ const DashboardPage = () => {
             <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', margin: 0 }}>My Recent Checks</h2>
             <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>{myActivity.length} total analyses</span>
           </div>
-          <div style={{ overflowX: 'auto' }}>
+          <div className="table-scroll-wrapper">
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: `1px solid var(--color-border)` }}>

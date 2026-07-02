@@ -580,3 +580,102 @@ body {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* ── Mobile Responsive Overrides ── */
+
+/* Smooth momentum scrolling for horizontally scrollable bars (category filters, tables) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dashboard responsive grid helpers */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+}
+
+.bar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .bar-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* Reduce card padding on small screens */
+@media (max-width: 640px) {
+  .glass-card {
+    border-radius: 16px;
+  }
+
+  /* Dashboard stat cards */
+  .stat-card-value {
+    font-size: 28px !important;
+  }
+}
+
+/* Table wrapper — always allow horizontal scroll on mobile */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll-wrapper table {
+  min-width: 560px;
+}
+
+/* Dashboard welcome banner mobile */
+@media (max-width: 768px) {
+  .dashboard-welcome {
+    padding: 20px 20px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .dashboard-cta {
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+}
+
+/* Dashboard navbar username — hide on very small screens */
+@media (max-width: 480px) {
+  .nav-username {
+    display: none !important;
+  }
+
+  .nav-signout-text {
+    display: none;
+  }
+}

@@ -7,32 +7,33 @@ const Header = () => {
   return (
     <header className="pt-20 lg:pt-2 pb-2 text-center relative">
       {/* Top-right controls */}
-      <div className="fixed top-5 right-6 md:top-6 md:right-8 z-50 flex items-center gap-3">
+      <div className="fixed top-4 right-4 md:top-6 md:right-8 z-50 flex items-center gap-2">
         <ThemeToggle />
         <Link
           to="/news"
-          className="px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2"
+          className="px-2.5 sm:px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" /><path d="M18 14h-8" /><path d="M15 18h-5" /><path d="M10 6h8v4h-8V6Z" /></svg>
-          News
+          <span className="hidden sm:inline">News</span>
         </Link>
         <Link
           to={isAuthenticated ? '/dashboard' : '/login'}
-          className="px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2"
+          className="px-2.5 sm:px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2"
         >
           {isAuthenticated ? (
             <>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
-              Dashboard
+              <span className="hidden sm:inline">Dashboard</span>
             </>
           ) : (
             <>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" y1="12" x2="3" y2="12" /></svg>
-              Sign In
+              <span className="hidden sm:inline">Sign In</span>
             </>
           )}
         </Link>
       </div>
+
 
       {/* Badge */}
       <div className="inline-flex items-center justify-center gap-2.5 bg-accent-glow border border-border-focus rounded-full px-5 py-2 mb-8 md:mb-10 text-[12px] font-semibold text-accent tracking-widest uppercase">

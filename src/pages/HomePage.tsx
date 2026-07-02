@@ -118,11 +118,11 @@ const HomePage = () => {
       />
 
       {/* Theme Toggle / Dashboard controls */}
-      <div className="fixed top-5 right-6 z-50 flex items-center gap-3">
+      <div className="fixed top-4 right-4 md:top-5 md:right-6 z-50 flex items-center gap-2">
         <ThemeToggle />
         <button
           onClick={() => navigate('/signup')}
-          className="px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2 cursor-pointer"
+          className="px-2.5 sm:px-5 py-2 text-sm font-semibold text-txt-primary bg-bg-secondary border border-border-base rounded-full hover:border-accent hover:text-accent hover:bg-accent-glow hover:-translate-y-0.5 shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2 cursor-pointer"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -130,7 +130,7 @@ const HomePage = () => {
             <line x1="19" y1="8" x2="19" y2="14" />
             <line x1="22" y1="11" x2="16" y2="11" />
           </svg>
-          Sign Up
+          <span className="hidden sm:inline">Sign Up</span>
         </button>
       </div>
 
@@ -162,7 +162,7 @@ const HomePage = () => {
 
             {/* Heading styled in distinct bold monospace typewriter font with blinking terminal cursor */}
             <h1
-              className="text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-5 text-txt-primary flex items-center justify-center min-h-[60px] leading-tight select-none"
+              className="text-4xl sm:text-5xl lg:text-7xl tracking-tight mb-5 text-txt-primary flex items-center justify-center min-h-[48px] sm:min-h-[60px] leading-tight select-none"
               style={{ fontFamily: "'Story Script', cursive" }}
             >
               <span>{typedText}</span>
@@ -170,7 +170,7 @@ const HomePage = () => {
             </h1>
 
             {/* Short text description */}
-            <p className="text-txt-secondary text-lg sm:text-xl max-w-[620px] mx-auto mb-10 font-normal leading-relaxed"> 
+            <p className="text-txt-secondary text-sm sm:text-lg sm:text-xl max-w-[620px] mx-auto mb-8 sm:mb-10 font-normal leading-relaxed px-2 sm:px-0">
               Verify news articles url links and images for misinformation instantly using advanced neural network models. Protect yourself from digital fraud, rumor networks, and fake reporting.
             </p>
 
@@ -217,7 +217,7 @@ const HomePage = () => {
           </div>
         ) : (
           /* Original Analyzer Interactive View */
-          <div key="analyzer-card" className="glass-card p-8 sm:p-12 animate-fade-up relative">
+          <div key="analyzer-card" className="glass-card p-5 sm:p-8 md:p-12 animate-fade-up relative">
 
               <button
                 onClick={() => setShowAnalyzer(false)}
