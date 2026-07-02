@@ -34,11 +34,15 @@ const LoginPage = () => {
     setLoading(true);
     setError('');
 
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedPassword = password.trim();
+
     // ── Demo shortcut ──
-    if (email.trim() === DEMO_ID && password === DEMO_PASS) {
+    if (normalizedEmail === DEMO_ID && normalizedPassword === DEMO_PASS) {
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('token', 'demo-token');
       localStorage.setItem('user', JSON.stringify({ name: 'Demo User', email: 'demo1@fakeshield.ai' }));
+      setLoading(false);
       navigate('/dashboard');
       return;
     }
