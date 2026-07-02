@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import ThemeToggle from '../Components/ThemeToggle';
+import { persistAuth, registerLocalUser } from '../utils/auth';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -49,33 +50,12 @@ const SignUpPage = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          name:     form.name,
-          email:    form.email,
-          password: form.password,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        const msg = data.errors?.[0]?.msg ?? data.message ?? 'Registration failed.';
-        setError(msg);
-        setLoading(false);
-        return;
-      }
-
-      // Auto-login: store token and redirect to dashboard
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      const localUser = registerLocalUser(form.name, form.email, form.password);
+      persistAuth(localUser, 'local-token');
       navigate('/dashboard');
-    } catch {
-      setError('Cannot reach the server. Make sure the backend is running.');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Registration failed.';
+      setError(message);
       setLoading(false);
     }
   };

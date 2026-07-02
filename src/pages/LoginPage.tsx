@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import ThemeToggle from '../Components/ThemeToggle';
+import { authenticateLocalUser, persistAuth } from '../utils/auth';
 
 
 
@@ -26,22 +27,15 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const DEMO_ID = 'tahmid';
-  const DEMO_PASS = '12345678';
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    const normalizedEmail = email.trim().toLowerCase();
-    const normalizedPassword = password.trim();
+    const authResult = authenticateLocalUser(email, password);
 
-    // ── Demo shortcut ──
-    if (normalizedEmail === DEMO_ID && normalizedPassword === DEMO_PASS) {
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('token', 'demo-token');
-      localStorage.setItem('user', JSON.stringify({ name: 'Demo User', email: 'demo1@fakeshield.ai' }));
+    if (authResult) {
+      persistAuth(authResult.user, authResult.token);
       setLoading(false);
       navigate('/dashboard');
       return;
@@ -55,23 +49,26 @@ const LoginPage = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
         const msg = data.errors?.[0]?.msg ?? data.message ?? 'Login failed.';
         setError(msg);
         setLoading(false);
         return;
       }
 
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      navigate('/dashboard');
+      const data = await res.json().catch(() => null);
+      if (data?.user) {
+        persistAuth(data.user, data.token);
+        navigate('/dashboard');
+        return;
+      }
     } catch {
-      setError('Cannot reach the server. Try the demo account below.');
-      setLoading(false);
+      // Fall back to local-only auth flow when the backend is unavailable.
     }
+
+    setError('No matching local account found. Please sign up or use the demo credentials.');
+    setLoading(false);
   };
 
   return (
